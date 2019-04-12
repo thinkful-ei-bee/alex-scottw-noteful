@@ -1,7 +1,7 @@
-'use strict';
-import React, { Component } from 'react'
-import NotefulForm from '../NotefulForm/NotefulForm'
-import './AddFolder.css'
+
+import React, { Component } from 'react';
+import NotefulForm from '../NotefulForm/NotefulForm';
+import './AddFolder.css';
 import APIcontext from '../APIcontext';
 
 
@@ -28,14 +28,14 @@ export default class AddFolder extends Component {
   }
 
   handleAddFolder = event => {
-    event.preventDefault()
+    event.preventDefault();
     const folderName = {
       name: event.target['folder-name-input'].value,
-    }
+    };
     fetch('https://polar-fjord-58738.herokuapp.com/api/folders', {
       method: 'POST',
       headers: new Headers({
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }),
       body: JSON.stringify(folderName),
     })
@@ -44,23 +44,23 @@ export default class AddFolder extends Component {
           // get the error message from the response,
           return res.json().then(error => {
             // then throw it
-            throw error
-          })
+            throw error;
+          });
         }
-        return res.json()
+        return res.json();
       })
       .then(data => {
         this.context.addFolder(data);
-        this.props.history.push(`/folder/${data.id}`)
+        this.props.history.push(`/folder/${data.id}`);
       })
       .catch(error => {
-        console.error(error)
-      })
+        console.error(error);
+      });
 
   }
  
   render() {
-    const {inputName,inputValid,}=this.state
+    const {inputName,inputValid,}=this.state;
     return (
       <section className='AddFolder'>
         <h2>Create a folder</h2>
@@ -78,6 +78,6 @@ export default class AddFolder extends Component {
           </div>
         </NotefulForm>
       </section>
-    )
+    );
   }
 }

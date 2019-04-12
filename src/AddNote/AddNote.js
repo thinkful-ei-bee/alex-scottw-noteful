@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import NotefulForm from '../NotefulForm/NotefulForm'
-import './AddNote.css'
+
+import React, { Component } from 'react';
+import NotefulForm from '../NotefulForm/NotefulForm';
+import './AddNote.css';
 import APIcontext from '../APIcontext';
 
 export default class AddNote extends Component {
@@ -22,10 +23,10 @@ export default class AddNote extends Component {
   };
 
   validateInput = inputName =>{
-    const validationMessage={...this.state.validationMessage}
+    const validationMessage={...this.state.validationMessage};
     let inputValid=true;
     if(inputName.length===0){
-      validationMessage.inputName = "Name must not be blank";
+      validationMessage.inputName = 'Name must not be blank';
       inputValid=false;
     }
     this.setState({validationMessage,inputValid});
@@ -34,17 +35,17 @@ export default class AddNote extends Component {
   
 
   handleAddNote = event =>{
-    event.preventDefault()
+    event.preventDefault();
     const Note = {
       name: event.target['note-name-input'].value,
       content: event.target['note-content-input'].value,
       folderId:event.target['note-folder-select'].value,
       modified: new Date(),
-    }
+    };
     fetch('  https://polar-fjord-58738.herokuapp.com/api/notes', {
       method: 'POST',
       headers: new Headers({
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }),
       body: JSON.stringify(Note),
     })
@@ -53,24 +54,24 @@ export default class AddNote extends Component {
           // get the error message from the response,
           return res.json().then(error => {
             // then throw it
-            throw error
-          })
+            throw error;
+          });
         }
-        return res.json()
+        return res.json();
       })
       .then(data => {
         this.context.addNote(data);
-        this.props.history.push(`/folder/${data.folderId}`)
+        this.props.history.push(`/folder/${data.folderId}`);
       })
       .catch(error => {
-        console.error(error)
-      })
+        console.error(error);
+      });
 
   }
 
   render() {
-    const { folders } = this.context
-    const {inputName,inputValid,}=this.state
+    const { folders } = this.context;
+    const {inputName,inputValid,}=this.state;
     //console.log(inputValid);
     return (
       <section className='AddNote'>
@@ -108,6 +109,6 @@ export default class AddNote extends Component {
           </div>
         </NotefulForm>
       </section>
-    )
+    );
   }
 }

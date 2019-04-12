@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NoteListNav from '../NoteListNav/NoteListNav'
-import NotePageNav from '../NotePageNav/NotePageNav'
-import NoteListMain from '../NoteListMain/NoteListMain'
-import NotePageMain from '../NotePageMain/NotePageMain'
-import AddFolder from '../AddFolder/AddFolder'
-import AddNote from '../AddNote/AddNote'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NoteListNav from '../NoteListNav/NoteListNav';
+import NotePageNav from '../NotePageNav/NotePageNav';
+import NoteListMain from '../NoteListMain/NoteListMain';
+import NotePageMain from '../NotePageMain/NotePageMain';
+import AddFolder from '../AddFolder/AddFolder';
+import AddNote from '../AddNote/AddNote';
 //import dummyStore from '../dummy-store'
-import APIcontext from '../APIcontext'
+import APIcontext from '../APIcontext';
 //import { getNotesForFolder, findNote, findFolder } from '../notes-helpers'
-import './App.css'
+import './App.css';
 
 class App extends Component {
   state = {
@@ -26,36 +26,36 @@ class App extends Component {
       fetch('https://polar-fjord-58738.herokuapp.com/api/folders'),
       fetch('https://polar-fjord-58738.herokuapp.com/api/notes'),
     ]).then(([folderRes, noteRes]) => {
-        if (!folderRes.ok) {
-          // get the error message from the response,
-          return folderRes.json().then(error => {
-            // then throw it
-            throw error
-          })
-        }
-        if (!noteRes.ok) {
-          // get the error message from the response,
-          return noteRes.json().then(error => {
-            // then throw it
-            throw error
-          })
-        }
-        return Promise.all([
-          folderRes.json(),
-          noteRes.json(),
-        ])
-      })
+      if (!folderRes.ok) {
+        // get the error message from the response,
+        return folderRes.json().then(error => {
+          // then throw it
+          throw error;
+        });
+      }
+      if (!noteRes.ok) {
+        // get the error message from the response,
+        return noteRes.json().then(error => {
+          // then throw it
+          throw error;
+        });
+      }
+      return Promise.all([
+        folderRes.json(),
+        noteRes.json(),
+      ]);
+    })
       .then(([folderRes, noteRes]) => {
         // call the callback when the request is successful
         // this is where the App component can remove it from state
         this.setState({
           notes:noteRes,
           folders:folderRes,
-        })
+        });
       })
       .catch(error => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   renderNavRoutes() {
@@ -101,7 +101,7 @@ class App extends Component {
           component={NotePageNav}
         />
       </>
-    )
+    );
   }
 
   renderMainRoutes() {
@@ -157,27 +157,27 @@ class App extends Component {
           }}*/
         />
       </>
-    )
+    );
   }
 
   addNote = note => {
     this.setState({
       notes:[...this.state.notes,note]
-    })
+    });
 
   }
 
   addFolder = folder => {
     this.setState({
       folders:[...this.state.folders,folder]
-    })
+    });
 
   }
 
   deleteNote = note => {
     this.setState({
       notes:this.state.notes.filter(item=>item.id!==note)
-    })
+    });
 
   }
 
@@ -188,7 +188,7 @@ class App extends Component {
       addNote: this.addNote,
       addFolder:this.addFolder,
       deleteNote:this.deleteNote,
-    }
+    };
     return (
       <APIcontext.Provider value={contextValue}>
         <div className='App'>
@@ -207,8 +207,8 @@ class App extends Component {
           </main>
         </div>
       </APIcontext.Provider>
-    )
+    );
   }
 }
 
-export default App
+export default App;

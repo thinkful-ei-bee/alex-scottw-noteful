@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
-import { format } from 'date-fns'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Note.css'
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Note.css';
 import APIcontext from '../APIcontext';
 
 export default class Note extends Component {
@@ -12,7 +12,7 @@ export default class Note extends Component {
     fetch(`https://polar-fjord-58738.herokuapp.com/api/notes/${id}`, {
       method: 'DELETE',
       headers: new Headers({
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }),
     })
       .then(res => {
@@ -20,8 +20,8 @@ export default class Note extends Component {
           // get the error message from the response,
           return res.json().then(error => {
             // then throw it
-            throw error
-          })
+            throw error;
+          });
         }
         //return res.json()
       })
@@ -35,8 +35,8 @@ export default class Note extends Component {
         
       })
       .catch(error => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
   
   render(){
@@ -63,7 +63,7 @@ export default class Note extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
   
 }
