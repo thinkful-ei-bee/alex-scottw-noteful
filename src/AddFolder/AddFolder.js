@@ -31,7 +31,7 @@ export default class AddFolder extends Component {
     const folderName = {
       name: event.target['folder-name-input'].value,
     }
-    fetch('http://localhost:9090/folders', {
+    fetch('https://polar-fjord-58738.herokuapp.com/api/folders', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': `application/json`

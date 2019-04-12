@@ -23,8 +23,8 @@ class App extends Component {
     //setTimeout(() => this.setState(dummyStore), 600)
     //api call
     Promise.all([
-      fetch('http://localhost:9090/folders'),
-      fetch('http://localhost:9090/notes'),
+      fetch('https://polar-fjord-58738.herokuapp.com/api/folders'),
+      fetch('https://polar-fjord-58738.herokuapp.com/api/notes'),
     ]).then(([folderRes, noteRes]) => {
         if (!folderRes.ok) {
           // get the error message from the response,

@@ -41,7 +41,7 @@ export default class AddNote extends Component {
       folderId:event.target['note-folder-select'].value,
       modified: new Date(),
     }
-    fetch('http://localhost:9090/notes', {
+    fetch('  https://polar-fjord-58738.herokuapp.com/api/notes', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': `application/json`

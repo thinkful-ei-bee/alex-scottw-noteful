@@ -9,7 +9,7 @@ export default class Note extends Component {
   static contextType = APIcontext;
  
   handleDeleteNote(id){
-    fetch(`http://localhost:9090/notes/${id}`, {
+    fetch(`https://polar-fjord-58738.herokuapp.com/api/notes/${id}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': `application/json`
@@ -23,7 +23,7 @@ export default class Note extends Component {
             throw error
           })
         }
-        return res.json()
+        //return res.json()
       })
       .then(data => {
         // call the callback when the request is successful

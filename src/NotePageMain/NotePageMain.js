@@ -7,10 +7,10 @@ import {findNote} from '../notes-helpers'
 export default class NotePageMain extends Component {
 
   static contextType=APIcontext;
-
   render(){
     const {notes}=this.context;
-    const { noteId } = this.props.match.params
+    let { noteId } = this.props.match.params
+    noteId=Number(noteId);
     const note = findNote(notes, noteId)
     return (
       <section className='NotePageMain'>
@@ -18,6 +18,7 @@ export default class NotePageMain extends Component {
           id={note.id}
           name={note.name}
           modified={note.modified}
+          //deleteRefresh={this.deleteRefresh}
 
         />
         <div className='NotePageMain__content'>
